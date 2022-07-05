@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+{% block content %}
+<link rel="stylesheet" href="{% static 'navbar.css' %}">
+<body>
+
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">SBP</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="{% url 'Mainpage' %}">HOME</a></li>
+                  <!--  <li><a href="{% url 'protektado_tayo_info' %}">SBP MEMBER REGISTRATION</a></li> -->
+                    <li><a href="{% url 'report_effects_surv' %}">VACCINES  SURVEY EFFECTS </a></li> 
+                    <li><a href="{% url 'reports_notvac_surv' %}">VACCINES CONCERNS </a></li>
+                    <li><a href="{% url 'table_vaceff' %}">REPORTS </a></li>
+                    <!-- <li><a href="{% url 'report_effects_surv' %}">VACCINES EFFECTS EXAMPLE</a></li> -->
+                    <li><a href="{% url 'feedback' %}">FEEDBACK</a></li>
+                    {% if request.session.otc_email %}
+                    <li><a href="{% url 'logout_sbp' %}"> {{request.session.otc_email }} Logout</a></li>
+                    {% endif %}
+                    
+
+                </ul>
+
+            </div>
+        </div> 
+</body>
+{% endblock %}
+</html> 

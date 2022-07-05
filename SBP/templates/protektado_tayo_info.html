@@ -1,0 +1,121 @@
+    {% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+{% block content %}
+
+<head>
+   <meta charset="utf-8">
+   <title>SBP</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'protektado_info.css' %} ">
+</head>
+<body>
+    {% for  message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+   <div class = "regform"><h1>SBP REGISTRATION</h1></div>
+   <div class ="SBP_MAIN">
+      {% if sbp_edit_info %}
+            <form method= "POST" action ="{% url 'update_sbp' sbp_edit_info.id %}">
+            {% csrf_token %}
+            <div id = "name">
+                <h2 class ="name">Fullname:</h2>
+                  <input type ="text" class="sbpfirstname"  value ="{{sbp_edit_info.otc_firstname}}" name="otc_firstname" placeholder ="Firstname" required>
+                  <input type ="text" class="sbplastname"  value ="{{sbp_edit_info.otc_lastname}}" name="otc_lastname" placeholder ="Lastname" required>
+                   </div>
+                   <h2 class = "Age">Initial:</h2>
+                  <input type ="text" class="age" name="otc_middlename" value ="{{sbp_edit_info.otc_middlename}}" placeholder ="ex. Middle Initial" required>
+                  <br><br><br>
+               <h2 class = "Age">Age</h2>
+               <input type ="text" class="age" value = "{{sbp_edit_info.otc_age}}" name="otc_age" placeholder ="ex. 19" required>
+               <h2 class = "Sbpstatus">Gender</h2>
+               <select class ="SBP_GENDER" value = "{{sbp_edit_info.otc_sex}}" name = "otc_sex"  required>
+                  <option value disabled selected >Select</option > 
+                <option>Male</option>
+                <option>Female</option>
+             </select>
+               <br><br>
+               <h2 class = "Gender" >Status</h2>
+               <select class ="SBP_GENDER"  value = "{{sbp_edit_info.otc_status}}" name = "otc_status" required >
+                 <option value disabled selected >Select</option>
+                 <option>Student</option>
+                 <option>Employed</option>
+                 <option>Nonemployed</option>
+               </select>
+             <h2 class ="Sbpaddress"  name = "">Address</h2 required>
+               <input type ="text" class ="email" value = "{{sbp_edit_info.otc_address}}"  name ="otc_address" placeholder="ex . Blk 18 Lot 15 ">
+               <h2 class ="Sbpbarangay" >Barangay</h2>
+               <input type ="text" class ="email" value = "{{sbp_edit_info.otc_barangay}}" name ="otc_barangay" placeholder="ex .Saint Peter I" required>
+             <h2 class ="Sbpmunin" >Munincipality</h2>
+               <input type ="text" class ="email" value = "{{sbp_edit_info.otc_munincipality}}" name ="otc_munincipality" placeholder="ex .Dasmarinas City Cavite" required>
+               <h2 class ="Email" >E-mail</h2>
+             <input type ="text" class ="email" value = "{{sbp_edit_info.otc_email}}" name ="otc_email" placeholder="ex. Halogenz224@gmail.com" required>
+             <h2 class ="Email" >Contact Number</h2>
+               <input type ="text" class ="email" value = "{{sbp_edit_info.otc_contact_number}}" name ="otc_contact_number" placeholder="ex .09509046483" required>
+                <button type ="submit" class ="SBP_INFO_BTN" value =" " name=""> UPDATE SUBMIT</button>
+                 <br>
+               <button type ="submit" class ="SBP_INFO_BTN1" value =" " name=""> <a href="{% url 'Mainpage' %}">Wait a moment</a></button>
+
+             </form>
+
+      {% else %} 
+
+
+            <form method= "POST" action =" {% url 'protektado_tayo_info' %}">
+             {% csrf_token %}
+             <div id = "name">
+            <h2 class ="name">Fullname:</h2>
+            <input type ="text" class="sbpfirstname" name="otc_firstname" placeholder ="Firstname" required>
+            <input type ="text" class="sbplastname" name="otc_lastname" placeholder ="Lastname" required>
+               </div>
+
+             <h2 class = "Age">Initial:</h2>
+               <input type ="text" class="age" name="otc_middlename" placeholder ="ex. Middle Initial" required>
+               <br><br><br>
+               <h2 class = "Age">Age</h2>
+               <input type ="text" class="age" name="otc_age" placeholder ="ex. 19" required>
+               <h2 class = "Sbpstatus">Gender</h2>
+               <!-- <input type ="text" class="age" name="otc_sex" placeholder ="ex.Male"> -->
+               <select class ="SBP_GENDER" name = "otc_sex"  required>
+                 <option value disabled selected >Select</option > 
+                 <option>Male</option>
+                 <option>Female</option>
+               </select>
+               <br><br>
+               <h2 class = "Gender" >Status</h2>
+                <!-- <input type ="text" class="age" name="otc_status" placeholder ="ex.Student"> -->
+               <select class ="SBP_GENDER" name = "otc_status" required >
+                 <option value disabled selected >Select</option>
+                 <option>Student</option>
+                 <option>Employed</option>
+                 <option>Nonemployed</option>
+               </select>
+               <h2 class ="Sbpaddress"  name = "">Address</h2 required>
+                <input type ="text" class ="email" name ="otc_address" placeholder="ex . Blk 18 Lot 15 ">
+             <h2 class ="Sbpbarangay" >Barangay</h2>
+              <input type ="text" class ="email" name ="otc_barangay" placeholder="ex .Saint Peter I" required>
+             <h2 class ="Sbpmunin" >Munincipality</h2>
+               <input type ="text" class ="email" name ="otc_munincipality" placeholder="ex .Dasmarinas City Cavite" required>
+             <h2 class ="Email" >E-mail</h2>
+              <input type ="text" class ="email" name ="otc_email" placeholder="ex. Halogenz224@gmail.com" required>
+             <h2 class ="Email" >Contact Number</h2>
+         <input type ="text" class ="email" name ="otc_contact_number" placeholder="ex .09509046483" required>
+         <!--  <h2 class ="Password">Password</h2>
+          <input type= "password" class ="pass1" name="" placeholder = "Enter password">
+          <input type= "password" class ="pass2" name="" placeholder = "Enter password"><br> -->
+
+          <!-- <p class = "condition">
+               <input type ="checkbox" id ="terms" name="">I accept the terms and conditions
+            </p><br> -->
+
+            <button type ="submit" class ="SBP_INFO_BTN" value =" " name="">SUBMIT</button>
+          <br>
+         <button type ="submit" class ="SBP_INFO_BTN1" value =" " name=""> <a href="{% url 'Mainpage' %}">Wait a moment</a></button>
+
+       </form>
+      {% endif %}
+</div>
+</body>
+{% endblock %}
+</html>

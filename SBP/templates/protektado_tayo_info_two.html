@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'online_accomodation_reg.css' %}">
+    <title>Survey Form</title>
+</head>
+<body>
+    <div class="container ">
+        <header class="header">
+            <h1 id="title">
+                
+                SAGUNIANG BAKSINADO PROTEKTADO REGISTRATION
+                {% for  message in messages %}<br>
+                <h1 style="text-align: center;">{{message}}<br></p>
+                 {% endfor %}
+            </h1>
+            <p id="description">
+                
+            </p>
+        </header>
+         {% if sbp_edit_info %}
+
+                <form id="survey-form" method= "POST" action ="{% url 'update_sbp' sbp_edit_info.id %}">
+            {% csrf_token %}
+            <div class="report_form">
+                <label for="name">Email</label>
+                <input type="text" value = "{{sbp_edit_info.otc_email}}" name ="otc_email"  class="formControl" placeholder="ex. halogenz24@gmail.com" required>
+            </div>
+
+            <div class="report_form">
+                <label for="name">Password</label>
+                <input type="password"  value = "{{sbp_edit_info.otc_password}}" name ="otc_password"  class="formControl" placeholder="Type your password" required>
+            </div>
+             <div class="report_form" >
+                <label>First Name :</label>
+                <input type="text"  value ="{{sbp_edit_info.otc_firstname}}" name="otc_firstname"  class="formControl" placeholder="Firstname " required>
+            </div>
+
+             <div class="report_form">
+                <label for="name">Middle Name</label>
+                <input type="text"  value ="{{sbp_edit_info.otc_middlename}}" name="otc_middlename"  class="formControl" placeholder="ex.D" required>
+            </div> 
+             <div class="report_form">
+                <label for="name">Last Name</label>
+                <input type="text" value ="{{sbp_edit_info.otc_lastname}}" name="otc_lastname"  class="formControl" placeholder="Lastname" required>
+            </div> 
+
+            <div class="report_form">
+                <label for="name">Age</label>
+                <input type="text"  value = "{{sbp_edit_info.otc_age}}" name="otc_age" class="formControl" placeholder="ex.19" required>
+            </div> 
+            
+            
+             <div class="report_form">
+                <label>Gender</label>
+                <select  required  class="formControl"  value = "{{sbp_edit_info.otc_sex}}" name = "otc_sex" >
+                    <option value disabled selected >Select</option>
+                    <option  value ="Male">Male</option>
+                    <option value="Female" >Female</option>
+                </select>
+            </div>
+
+            <div class="report_form">
+                <label>Status</label>
+                <select required  value = "{{sbp_edit_info.otc_status}}" name = "otc_status" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option value ="Student">Student</option>
+                    <option value ="Employed" >Employed</option>
+                    <option value = "Nonemployed">Nonemployed</option>
+                </select>
+            </div>
+
+
+            <div class="report_form">
+                <label for="name">Addresss</label>
+                <input type="text" value = "{{sbp_edit_info.otc_address}}" name ="otc_address" class="formControl" placeholder="ex. San Isidro" required>
+            </div>
+
+            <div class="report_form">
+                <label for="name">Barangay</label>
+                <input type="text" value = "{{sbp_edit_info.otc_barangay}}" name ="otc_barangay" id="name" class="formControl" placeholder="ex. San Isidro " required>
+            </div>
+            
+
+            <div class="report_form">
+                <label for="name">Munincipality</label>
+                <input type="text" value = "{{sbp_edit_info.otc_munincipality}}" name ="otc_munincipality" id="name" class="formControl" placeholder="ex. Dasmarinas City Cavite" required>
+            </div>
+
+
+            
+
+
+             <div class="report_form">
+                <label for="name">Contact Number</label>
+                <input type="text"  value = "{{sbp_edit_info.otc_contact_number}}" name ="otc_contact_number"  class="formControl" placeholder="ex. 0950941246124" required>
+            </div>
+
+            
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn"> Update Submit</button>
+            </div>
+
+            <!-- <div class="report_form">
+                <button type="submit" id="submit" class="btn"><a href="{% url 'Mainpage' %}">Wait a moment</a></button>
+            </div> -->
+                </form>
+        {% else %}
+        <form id="survey-form" method= "POST" action =" {% url 'protektado_tayo_info' %}">
+            {% csrf_token %}
+
+            <div class="report_form">
+                <label for="name">Email</label>
+                <input type="text"name ="otc_email"  class="formControl" placeholder="ex. halogenz24@gmail.com" required>
+            </div>
+
+              <div class="report_form">
+                <label for="name">Password</label>
+                <input type="password"name ="otc_password"  class="formControl" placeholder="Type your password" required>
+            </div>
+             <div class="report_form" >
+                <label>First Name :</label>
+                <input type="text" name="otc_firstname"  class="formControl" placeholder="Firstname " required>
+            </div>
+
+             <div class="report_form">
+                <label for="name">Middle Name</label>
+                <input type="text" name="otc_middlename"  class="formControl" placeholder="ex.D" required>
+            </div> 
+             <div class="report_form">
+                <label for="name">Last Name</label>
+                <input type="text" name="otc_lastname"  class="formControl" placeholder="Lastname" required>
+            </div> 
+
+            <div class="report_form">
+                <label for="name">Age</label>
+                <input type="text" name="otc_age" class="formControl" placeholder="ex.19" required>
+            </div> 
+            
+            
+             <div class="report_form">
+                <label>Gender</label>
+                <select  required  class="formControl" name = "otc_sex" >
+                    <option value disabled selected >Select</option>
+                    <option  value ="Male">Male</option>
+                    <option value="Female" >Female</option>
+                </select>
+            </div>
+
+            <div class="report_form">
+                <label>Status</label>
+                <select required name = "otc_status" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option value ="Student">Student</option>
+                    <option value ="Employed" >Employed</option>
+                    <option value = "Nonemployed">Nonemployed</option>
+                </select>
+            </div>
+
+
+            <div class="report_form">
+                <label for="name">Addresss</label>
+                <input type="text" name ="otc_address" class="formControl" placeholder="ex. San Isidro" required>
+            </div>
+
+            <div class="report_form">
+                <label for="name">Barangay</label>
+                <input type="text" name ="otc_barangay" id="name" class="formControl" placeholder="ex. San Isidro " required>
+            </div>
+            
+
+            <div class="report_form">
+                <label for="name">Munincipality</label>
+                <input type="text"name ="otc_munincipality" id="name" class="formControl" placeholder="ex. Dasmarinas City Cavite" required>
+            </div>
+
+             <!--  <div class="report_form">
+                <label for="name">Username</label>
+                <input type="text"name ="otc_username"  class="formControl" placeholder="ex.Trafalgar24" required>
+            </div>
+ -->
+
+            
+
+
+             <div class="report_form">
+                <label for="name">Contact Number</label>
+                <input type="text"  name ="otc_contact_number"  class="formControl" placeholder="ex. 0950941246124" required>
+            </div>
+
+            
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn"><a href="{% url 'login_sbp' %}">Click here if already have a Account</a></button>
+            </div>
+        </form>
+    {% endif %}
+    </div>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,36 @@
+{% load static %}
+{% block content %}
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'table_feedback.css' %}">
+
+
+</head>
+{% include 'navbar.html' %}
+<br><br>
+<body>
+  <table>
+    <thead>
+
+      <tr> 
+        <th>No</th>
+        <th>Messages</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for message in message_sbp %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{message.Message_response}}</td>
+        <td><a href="{% url 'edit_message' message.id %}">Update</a></td>
+        <td><a href="{% url 'delete_message' message.id %}">Delete</a></td>
+
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</body>
+{% endblock %}

@@ -1,0 +1,285 @@
+body{
+  background-position: center;
+  background-size: cover;
+  font-family: sans-serif;
+  background-image: url();
+  background-color: lightblue;
+  margin-top: 40px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.regform{
+  width: 800px;
+  background-color: skyblue;
+  margin: auto;
+  padding: 10px 0px 10px 0px ;
+  text-align: center;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.SBP_MAIN{
+  background-color: lightsalmon;
+  width: 800px;
+  margin: auto;
+}
+form{
+  padding: 50px;
+}
+
+#name{
+  width: 100%;
+  height: 100px;
+}
+
+.name{
+  margin-left:  25px;
+  margin-top: 30px;
+  width: 125px;
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+
+.sbpfirstname{
+  position: relative;
+  left: 200px;
+  top: -29px;
+  border-radius: 6px;
+  line-height: 30px;
+  padding: 0  22px;
+  font-size: 16px;
+}
+
+.sbplastname{
+  position: relative;
+  left: 200px;
+  top: -29px;
+  border-radius: 6px;
+  line-height: 30px;
+  padding: 0  22px;
+  font-size: 16px;
+}
+
+.Age{
+  margin-Left: 25px;
+  margin-top: -35px;
+  width: 125px;
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.age{
+  position: relative;
+  left: 200px;
+  top: -29px;
+  border-radius: 6px;
+  line-height: 30px;
+  padding: 0 22px;
+  font-size: 16px;
+}
+
+.Gender{
+  margin-top: -7px;
+  margin-left:  25px;
+  width: 125;
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+
+}
+
+.Sbpstatus{
+  margin-top: -7px;
+  margin-left:  25px;
+  width: 125;
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+
+}
+
+.Sbpaddress{
+  margin-left: 25px;
+  margin-top: 8px;
+  width: 125px;
+  color: white;
+  font-size: 22px;
+  font-weight:700;
+}
+
+.Sbpbarangay{
+  margin-left: 25px;
+  margin-top: 8px;
+  width: 125px;
+  color: white;
+  font-size: 22px;
+  font-weight:700;
+}
+
+.Sbpmunin{
+  margin-left: 25px;
+  margin-top: 8px;
+  width: 125px;
+  color: white;
+  font-size: 22px;
+  font-weight:700;
+}
+
+.SBP_GENDER{
+  position: relative;
+  left: 200px;
+  top: -20px;
+  border-radius: 6px
+  height: 30px;
+  padding: 0 22px;
+  font-size: 16px;
+
+}
+
+.Email{
+  margin-left: 25px;
+  margin-top: 8px;
+  width: 125px;
+  color: white;
+  font-size: 22px;
+  font-weight:700;
+}
+
+.email{
+  position: relative;
+  left: 200px;
+  top: -30px;
+  border-radius: 6px;
+  line-height: 30px;
+  padding: 0 22px;
+  font-size: 16px;
+
+
+
+}
+
+
+.Phone{
+  margin-left: 25px;
+  margin-top: 8px;
+  width: 125px;
+  color: white;
+  font-size: 22px;
+  font-weight:700;
+
+}
+
+.phone{
+  position: relative;
+  left: 200px;
+  top: -30px;
+  height: 32px ;
+  border-radius: 6px;
+  line-height: 30px;
+  padding: 0 22px;
+  font-size: 16px;
+
+}
+
+.number{
+  position: relative;
+  left: 200px;
+  top: -30px;
+  border-radius: 6px;
+  line-height: 30px;
+  padding: 0 22px;
+  font-size: 16px;
+
+}
+
+
+.Password{
+  margin-left: 25px;
+  margin-top: 8px;
+  width: 125px;
+  color: white;
+  font-size: 22px;
+  font-weight:700;
+}
+
+.password{
+    margin-top: 8px;
+    margin-left: 25px;
+    width: 125px;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.pass1{
+  position: relative;
+  left: 200px;
+  top: -30px;
+  border-radius: 6px;
+  line-height: 30px;
+  padding: 0 22px;
+  font-size: 16px;
+}
+.pass2{
+  position: relative;
+  left: 200px;
+  top: -30px;
+  border-radius: 6px;
+  line-height: 30px;
+  padding: 0 22px;
+  font-size: 16px;
+}
+
+#terms{
+  margin-left: -32px;
+  margin-top: 1px;
+  width: 125px;
+}
+
+.condition{
+  color:deepskyblue;
+  font-size: 18px;
+}
+.SBP_INFO_BTN{
+  border-radius: 6px;
+  display: block;
+  margin: 20px 0px 0px 20px;
+  color: darkblue;
+  border: 2px solid;
+  padding:  12px 5px;
+  cursor: pointer;
+  font-size: 22px;
+  text-align: center;
+}
+
+.SBP_INFO_BTN1{
+  background-color: white;
+  border-radius: 6px;
+  /*display: relative;*/
+  margin: 20px 0px 0px 20px;
+  color: darkblue;
+  border: 2px solid;
+  padding:  12px 5px;
+  /*padding: 10px 0px 10px 0px ;*/
+  cursor: pointer;
+  font-size: 22px;
+  text-align: center;
+ 
+
+ 
+}
+
+
+.SBP_INFO_BTN:hover{
+  background-color: lightblue;
+}
+
+.SBP_INFO_BTN1:hover{
+  background-color: lightblue;
+}

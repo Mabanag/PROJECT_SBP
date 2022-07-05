@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+	</style>
+</head>
+    
+<body>
+
+    <div class="main">
+        <div class="content">
+            <h1><span>Growth and Protection</span><br> SAGUNIANG PROTEKTADO BAKSINADO <br></h1>
+            <p class="par">This WebApp's goal is to collect data on   how many are citizens vaccinated <br> and what their concerns to their heath of not being vaccinated. <br>Assestment and survey on how vaccine doses and vaccine types affect <br> your body and  mind in short and long term effects to aid in other research and supervision. <br>safeguarding of our citizens.</p>
+
+			<p class="par">Are you Vaccinated?</p>
+
+                <button class="cn"><a href="{% url 'protektado_tayo_info' %}">YES</a></button>
+                 <button class="cn"><a href="{% url 'notvac_survey' %}">NO</a></button>
+
+                <div class="form">
+                    <h2>INFORMATION GUIDELINES</h2>
+                    <button class="btnn"><a href="{% url 'dashboard' %}">SBP Record</a></button> 
+                    <button class="btnn"><a href="#">Comments</a></button>
+                    <button class="btnn"><a href="{% url 'notvac_survey' %}">Concerns About Vaccines</a></button>
+                </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}
+</html> 

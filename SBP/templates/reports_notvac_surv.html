@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'report_effects.css' %}">
+    <title>Survey Form</title>
+</head>
+<body>
+    <div class="container ">
+        <header class="header">
+            <h1 id="title">
+                 VACCINES CONCERNS
+                <br>
+            </h1>
+            <p id="description">
+                The development of the COVID-19 vaccines did not cut corners on testing for safety and efficacy. The vaccines were made using processes that have been developed and tested over many years,
+            </p>
+            <br>
+            <h1 id="title">
+                 {% for  message in messages %}
+                 {{message}}
+                {% endfor %}
+            </h1>
+        </header>
+
+        {% if sbp_edit_concerns %}
+
+                 <form  method= "POST"action="{% url 'update_concerns' sbp_edit_concerns.id %}" id="survey-form">
+         {% csrf_token %}   
+             <div class="report_form">
+                <label>Which of the followings define your concerns about getting the vaccine?</label>
+                <select  required id="dropdown" value ="{{sbp_edit_concerns.Concern_One}}"  name="Concern_One" class="formControl">
+                     <option value disabled selected >Select</option>
+                    <option >I have concerns about the vaccines side effects,long-term safety and efficacy</option>
+                    <option >I have religious reasons</option>
+                    <option >I do not believe it will be a solution for coronavirus disease</option>
+                    <option >I believe that it will have negative effects on my health</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+             <div class="report_form">
+                <label> Which of the followings would be helpful if you did not decide yet?</label>
+                <select  required id="dropdown" value ="{{sbp_edit_concerns.Concern_Two}}" name="Concern_Two" class="formControl">
+                    <option >Select</option>
+                    <option >If my doctor would approve</option>
+                    <option >If my family would approve</option>
+                    <option >I want to wait for a period to observe how other people react to the vaccines</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+            <div class="report_form">
+                <label> What makes it difficult for you to get a COVID-19 vaccine?</label>
+                <select  required id="dropdown" value ="{{sbp_edit_concerns.Concern_Three}}" name="Concern_Three" class="formControl">
+                   <option value disabled selected >Select</option>
+                    <option >I can’t go on my own.I have a physical limitation</option>
+                    <option >I am too busy to get vaccinated</option>
+                    <option >I don’t know where to go to get vaccinated</option>
+                    <option >None</option>
+                </select>
+            </div>
+
+
+            
+         <!--   <div class="report_form">
+                <p id="quest">We'd look forward to hearing about your other concerns</p>
+                <textarea   cols="30" rows="5"  id="feedback"  value ="{{sbp_edit_concerns.Other_Concern_Reason}}" name="Other_Concern_Reason" class="textarea" placeholder="Enter your Concerns."></textarea>
+            </div> -->
+
+            <div class="report_form">
+                <label>We'd look forward to hearing about your other concerns?</label>
+                <input type="text"  id="name"value ="{{sbp_edit_concerns.Other_Concern_Reason}}" name="Other_Concern_Reason" class="formControl" placeholder="Enter your Concerns." required>
+            </div>
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn"> Update</button>
+            </div>
+        </form>
+
+        {% else %}
+        <form  method= "POST" action="{% url 'reports_notvac_surv' %}" id="survey-form">
+         {% csrf_token %}   
+             <div class="report_form">
+                <label>Which of the followings define your concerns about getting the vaccine?</label>
+                <select  required id="dropdown" name="Concern_One" class="formControl">
+                     <option value disabled selected >Select</option>
+                    <option >I have concerns about the vaccines side effects,long-term safety and efficacy</option>
+                    <option >I have religious reasons</option>
+                    <option >I do not believe it will be a solution for coronavirus disease</option>
+                    <option >I believe that it will have negative effects on my health</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+             <div class="report_form">
+                <label>Which of the followings would be helpful if you did not decide yet?</label>
+                <select  required id="dropdown" name="Concern_Two" class="formControl">
+                    <option >Select</option>
+                    <option >If my doctor would approve</option>
+                    <option >If my family would approve</option>
+                    <option >I want to wait for a period to observe how other people react to the vaccines</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+            <div class="report_form">
+                <label> What makes it difficult for you to get a COVID-19 vaccine?</label>
+                <select  required id="dropdown" name="Concern_Three" class="formControl">
+                   <option value disabled selected >Select</option>
+                    <option >I can’t go on my own.I have a physical limitation</option>
+                    <option >I am too busy to get vaccinated</option>
+                    <option >I don’t know where to go to get vaccinated</option>
+                    <option >None</option>
+                </select>
+            </div>
+
+
+            
+          <!--  <div class="report_form">
+                <p id="quest">We'd look forward to hearing about your other concerns</p>
+                <textarea   cols="30" rows="5"  id="feedback" value ="{{sbp_edit_concerns.Other_Concern_Reason}}" name="Other_Concern_Reason" class="textarea" placeholder="Enter your Concerns."></textarea>
+            </div> -->
+            <div class="report_form">
+                <label>We'd look forward to hearing about your other concerns?</label>
+                <input type="text"  id="name" name="Other_Concern_Reason" class="formControl" placeholder="Type your Concerns." required>
+            </div>
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+        </form>
+    {% endif %}
+    </div>
+</body>
+{% endblock %}
+</html>

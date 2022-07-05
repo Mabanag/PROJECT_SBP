@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+ 
+
+</head>
+
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'table_vaceff.css' %}">
+
+<body>
+  <h3>SBP Members</h3>
+   {% include 'sbp_member_table.html' %}
+
+  
+  <h3>Vaccines Effects</h3>
+ 
+  <table>
+   
+      
+     
+
+    <thead>
+      <tr>
+        <!-- <th>No.</th> -->
+       <!--  <th>Last Name</th>
+        <th>Age</th> -->
+        <th>NO</th>
+        <th>Dosage Vaccines</th>
+        <th>Vaccines Categories</th>
+        <th>Physical Body Effects</th>
+        <th>Serious Physical Effects</th>
+        <th>Mental Effects</th> 
+       <th>Other Experiences</th>
+        <th>Date</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+       {% for effects in vac_effects %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{effects.Vac_Immunity}}</td>
+        <td>{{effects.Vaccination_Category}}</td>
+        <td>{{effects.Physical_mild_Effects}}</td>
+        <td>{{effects.Physical_Serious_Effects}}</td>
+        <td>{{effects.Mental_Effects}}</td>
+        <td>{{effects.Experience_Effects}}</td>
+        <td>{{effects.date_created}}</td>
+        <td><a href="{% url 'edit_effects' effects.id %}">Update</a></td>
+        <td><a href="{% url 'delete_effects' effects.id %}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+     
+  </table>
+  <div class="sbp">
+    <span class="step-links">
+        {% if vac_effects.has_previous %}
+            <a href="?page=1">&lAarr; First</a>
+            <a href="?page={{ vac_effects.previous_page_number }}">Previous Effects table</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ vac_effects.number }} of {{ vac_effects.paginator.num_pages }}.
+        </span>
+
+        {% if vac_effects.has_next %}
+            <a href="?page={{ vac_effects.next_page_number }}">Next</a>
+            <a href="?page={{ vac_effects.paginator.num_pages }}">Last Page &rAarr;</a>
+        {% endif %}
+    </span>
+</div>
+  <br>
+  <h3>Concern of Vaccines</h3>
+  {% include 'table_con_nvac.html' %}
+  <br>
+  <h3>Positive Impacts of Vaccines</h3>
+  {% include 'table_positive_effects.html' %}
+  <br>
+
+</body>
+
+{% endblock %}

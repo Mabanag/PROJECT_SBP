@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'feedback.css' %}">
+    <title>SBP</title>
+</head>
+<body>
+    <div class="container ">
+        <header class="sbp_header">
+            <h1 id="title">
+      FEEDBACK
+            </h1>
+            <p id="description">
+             As the COVID-19 pandemic continues, getting the vaccine is a powerful step in taking charge of your health. When given as directed, the FDA-authorized vaccines can prevent severe COVID-19 illness and death. We gladly appreciate and message you right away about your difficulty about vaccines effects,concerns or improvement to our sites. Thankyou for visiting our website.
+                <br><br>
+             {% for  message in messages %}
+                 {{message}}
+            {% endfor %}
+
+
+            </p>
+        </header>
+        {% if sbp_edit_message %}
+                 <form method= "POST" action="{% url 'update_message' sbp_edit_message.id %}" id="survey-form">
+            {% csrf_token %}
+
+
+
+            <div class="sbp_form">
+                <label for="name">Messsages</label>
+                <input type="text"   value ="{{sbp_edit_message.Message_response}}" name="Message_response" id="name" class="formControl" placeholder=" " required>
+            </div>
+
+            <!-- <div class="sbp_form">
+                <p id="quest">Give us your response </p>
+                <textarea name="feedback"  cols="30" rows="5"  id="feedback" class="textarea" placeholder="Enter your response"></textarea>
+            </div>  -->
+            <div class="sbp_form">
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+                </form>
+        {% else %}
+        <form method= "POST" action="{% url 'feedback' %}" id="survey-form">
+            {% csrf_token %}
+                
+            <div class="sbp_form">
+                <label for="name">Messsages</label>
+                <input type="text" name="Message_response" id="name" class="formControl" placeholder=" " required>
+            </div>
+
+            <!-- <div class="report_form">
+                <p id="quest">Give us your response </p>
+                <textarea name="feedback"  cols="30" rows="5"  id="feedback" class="textarea" placeholder="Enter your response"></textarea>
+            </div>  -->
+            <div class="sbp_form">
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+        </form>
+    {% endif %}
+    </div>
+</body>
+{% endblock %}
+</html>

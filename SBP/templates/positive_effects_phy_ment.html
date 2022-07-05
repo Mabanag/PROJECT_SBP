@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'report_effects.css' %}">
+</head>
+<body>
+    <div class="container ">
+        <header class="header">
+            <h1 id="title">
+                POSITIVE EFFECTS VACCINES<br>
+            </h1>
+            <p id="description">
+               Getting a COVID-19 vaccine is a safer, more reliable way to build protection than getting sick with COVID-19. COVID-19 vaccination helps protect you by creating an antibody response without you having to experience sickness, potentially including severe illness, or post-COVID conditions. 
+            </p>
+            <h1 id="title">
+                {% for  message in messages %}
+                 {{message}}
+            {% endfor %}
+            </h1>
+        </header>
+        {% if sbp_edit_pos_effects %}
+               <form  method= "POST" action="{% url 'update_pos_effects' sbp_edit_pos_effects.id %}" id="survey-form">
+
+             {% csrf_token %}
+            
+             <div class="report_form">
+                <label>How have you felt following your vaccination for the past months?</label>
+                <select  required id="dropdown"  class="formControl" value ="{{sbp_edit_pos_effects.Vaccination_Effects_Felt}}" name="Vaccination_Effects_Felt">
+                    <option value disabled selected >Select</option>
+                    <option>Happy</option>
+                    <option >Reliefs and Gratitude</option>
+                    <option >freedom with care</option>
+                    <option >Being Active</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+             <div class="report_form">
+                <label>What positive effects do you feel to your body?</label>
+                <select  required id="dropdown"  class="formControl" value ="{{sbp_edit_pos_effects.Vaccination_Effects_Body_Felt}}" name="Vaccination_Effects_Body_Felt">
+                    <option value disabled selected >Select</option>
+                    <option >Feeling energized</option>
+                    <option >Doing work lightly(mas magaan ang mga gawain)</option>
+                    <option >Cherish little things about life</option>
+                    <option >No more sleeping deprivation ( hindi na hirap sa pagtulog)</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+            <div class="report_form">
+                <label>Is it likely that even a vaccine may treat a disease you had in the past?</label>
+                 <input type="text" value ="{{sbp_edit_pos_effects.Positive_effects_one}}" name ="Positive_effects_one" id="name" class="formControl" placeholder="ex. Yes my skin symtoms is finally healed " required>
+            </div>
+
+             <div class="report_form">
+                <label>Can you share your experience about postivity effects of the vaccines?</label>
+                <input type="text"  id="name" value ="{{sbp_edit_pos_effects.Positive_effects_two}}" name="Positive_effects_two" class="formControl" placeholder="ex. I prefer doing things more now when I am vaccinated. " required>
+            </div>
+            <div class="report_form">
+                <label for="name">Date</label>
+                <input type="text"  id="name" value ="{{sbp_edit_pos_effects.date_created_vaccine}}" name="date_created_vaccine" class="formControl" placeholder="ex.06-12-2022" required>
+            </div> 
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+            </form>
+        {% else %}
+
+        <form  method= "POST" action="{% url 'report_positive_effects_surv' %}" id="survey-form">
+
+             {% csrf_token %}
+             
+
+            
+             <div class="report_form">
+                <label>How have you felt following your vaccination for the past months?</label>
+                <select  required id="dropdown"  class="formControl" name="Vaccination_Effects_Felt">
+                    <option value disabled selected >Select</option>
+                    <option>Happy</option>
+                    <option >Reliefs and Gratitude</option>
+                    <option >freedom with care</option>
+                    <option >Being Active</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+             <div class="report_form">
+                <label>What positive effects do you feel to your body?</label>
+                <select  required id="dropdown"  class="formControl" name="Vaccination_Effects_Body_Felt">
+                    <option value disabled selected >Select</option>
+                    <option >Feeling energized</option>
+                    <option >Doing work lightly(mas magaan ang mga gawain)</option>
+                    <option >Cherish little things about life</option>
+                    <option >No more sleeping deprivation ( hindi na hirap sa pagtulog)</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+            <div class="report_form">
+                <label>Is it likely that even a vaccine may treat a disease you had in the past?</label>
+                 <input type="text"  name ="Positive_effects_one" id="name" class="formControl" placeholder="ex. Yes my skin symtoms is finally healed " required>
+            </div>
+
+             <div class="report_form">
+                <label>Can you share your experience about postivity effects of the vaccines?</label>
+                <input type="text"  id="name" name="Positive_effects_two" class="formControl" placeholder="ex. I prefer doing things more now when I am vaccinated. " required>
+            </div>
+            <div class="report_form">
+                <label for="name">Date</label>
+                <input type="text"  id="name" name="date_created_vaccine" class="formControl" placeholder="ex.06-12-2022" required>
+            </div> 
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</body>
+
+{% endblock %}
+</html>

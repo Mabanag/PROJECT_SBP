@@ -1,0 +1,60 @@
+{% load static %}
+{% block content %}
+<head>
+ 
+
+</head>
+
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'sbp_member_table.css' %}">
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Update</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+     {% for members in otc_members %}
+    <tbody>
+     
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{members.otc_lastname}}</td>
+        <td>{{members.otc_sex}}</td>
+        <td>{{members.otc_email}}</td>
+        <td>{{members.otc_status}}</td>
+        <td><a href="{% url 'edit_sbp' members.id %}">Update</a></td>
+        <td><a href="{% url 'delete_sbp' members.id %}">Delete</a></td>
+      </tr>
+      
+    </tbody>
+    {% endfor %}
+  </table>
+  <div class="sbp">
+    <span class="step-links">
+        {% if otc_members.has_previous %}
+            <a href="?page=1">&lAarr; First</a>
+            <a href="?page={{ otc_members.previous_page_number }}">Previous member table</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{otc_members.number }} of {{otc_members.paginator.num_pages }}.
+        </span>
+
+        {% if otc_members.has_next %}
+            <a href="?page={{ otc_members.next_page_number }}">Next</a>
+            <a href="?page={{ otc_members.paginator.num_pages }}">Last Page &rAarr;</a>
+        {% endif %}
+    </span>
+</div>
+  <br><br>
+</body>
+{% endblock %}

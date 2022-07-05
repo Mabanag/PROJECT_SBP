@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <title>SBT</title>
+    <link rel="stylesheet" href="{% static 'sbp_mainpage.css' %}">
+    <style>
+	</style>
+</head>
+    
+<body>
+
+    <div class="main">
+        <div class="sbp_content">
+            
+            <h1><span>SAGUNIANG PROTEKTADO <br>TAYO</span></h1>
+            <p class="par">This WebApp's goal is to collect data on   how many are citizens vaccinated <br> and what their concerns to their health of not being vaccinated. <br>Assestment and survey on how vaccine doses and vaccine types effects<br> to your body and  mind in short and long term effects to aid in other research and protection to  <br> our citizens.</p>
+
+
+			<p class="par">Kindly Sign up to our website  Thankyou</p>
+
+                <button class="sbp_class"><a href="{% url 'login_sbp' %}">Sign In</a></button>
+                 <button class="sbp_class"><a href="{% url 'protektado_tayo_info' %}">Sign Up</a></button>
+                 <br>
+              
+
+
+                <div class="form">
+                    <!-- <input class="srch" type="search" name="" placeholder="Type here">
+                     <br><br>
+                     <a href="#"> <button class="sbp_class" style="color:black;text-align:center;padding-right:10px">Search</button></a> -->
+                     <br>
+                    <h2>INFORMATION GUIDELINES</h2>
+                    <button class="sbp_btn"><a href="{% url 'dashboard' %}">SBP Count Record</a></button> 
+                    <button class="sbp_btn"><a href="{% url 'comments_message' %}">Comments Feedback</a></button>
+                    <button class="sbp_btn"><a href="{% url 'report_positive_effects_surv' %}">Positive Impact view</a></button>
+                    
+                </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}
+</html> 

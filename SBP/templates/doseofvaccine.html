@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'doseofvaccine.css' %}">
+    <title>Survey Form</title>
+</head>
+<body>
+    <div class="container ">
+        <header class="header">
+            <h1 id="title">
+                EFFECTS OF VACCINES
+            </h1>
+            <p id="description">
+               Vaccine side effects such as headache, fatigue, muscle and joint pain, fever and chills, and pain at the injection site are the most commonly reported events with COVID-19 vaccines. 
+            </p>
+        </header>
+        <form action="" id="survey-form">
+
+             
+
+            
+             <div class="report_form">
+                <label>Select Dose of vaccines in the followings?</label>
+                <select name="role" required id="dropdown" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option value="First">1st Dose</option>
+                    <option value="Second">2nd Dose</option>
+                    <option value="FBooster">First Booster</option>
+                    <option value="SBooster">Second Booster</option>
+                </select>
+            </div>
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn"><a href ="{% url 'classofvaccine' %}">Submit</a></button>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'online_accomodation_reg.css' %}">
+    <title>Survey Form</title>
+</head>
+<body>
+    <div class="container ">
+        <header class="header">
+            <h1 id="title">
+                
+                SAGUNIANG BAKSINADO PROTEKTADO <br>LOGIN
+            </h1>
+            <p id="description">
+                
+            </p>
+        </header>
+        <form id="survey-form" method= "POST">
+            {% csrf_token %}
+
+
+
+            <div class="report_form">
+                <label for="name">Email</label>
+                <input type="text"name ="otc_email"  class="formControl" placeholder="ex. halogenz24@gmail.com" required>
+            </div>
+
+              <div class="report_form">
+                <label for="name">Password</label>
+                <input type="password"name ="otc_password"  class="formControl" placeholder="Type your password" required>
+            </div>
+
+             {% for  message in messages %}
+                <h1 style="text-align: center;">{{message}}</p>
+                 {% endfor %}
+     
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn">Enter</button>
+            </div>
+
+           
+
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn"><a href="{% url 'protektado_tayo_info' %}">Click To Sign up</a></button>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}
+</html>

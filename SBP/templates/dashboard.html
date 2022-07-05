@@ -1,0 +1,62 @@
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<br>
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+
+</head>
+<h1>Total Vaccines Counts</h1>
+<body>
+  <table class = "NumberOne">
+    <thead>
+
+      <tr>
+        <th>Pfizer</th>
+        <th>AstraZeneca</th>
+        <th>Sinovac</th>
+        <th>Sputnik</th>
+        <th>Johnsons Janssen</th>
+        <th>BioTech</th>
+        <th>Moderna</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{pfizer_count}}</td>
+        <td>{{AstraZeneca_count}}</td>
+        <td>{{Sinovac_count}}</td>
+        <td>{{Sputnik_count}}</td>
+        <td>{{Johnsons_Janssen_count}}</td>
+        <td>{{BioTech_count}}</td>
+        <td>{{Moderna_count}}</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+<h1>Protection and Growth </h1>
+  <table>
+    <thead>
+
+      <tr>
+         <th> Total SBP MEMBERS </th>
+        <th>Total Vaccinated and Vaccines Effects</th>
+       
+        <th>Total Vaccines Concern </th>
+        <th>Total Vaccines Positive  Impact </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+       
+        <td>{{total_members_dashboard}}</td> 
+         <td>{{total_vac_effects_db}}</td>  
+        <td>{{total_concern_effects_db}}</td>
+        <td>{{total_vac_positive_db}}</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

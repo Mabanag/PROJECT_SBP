@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'report_effects.css' %}">
+</head>
+<body>
+    <div class="container ">
+        <header class="header">
+            <h1 id="title">
+                EFFECTS OF VACCINES<br>
+            </h1>
+            <p id="description">
+               Vaccine side effects such as headache, fatigue, muscle and joint pain, fever and chills, and pain at the injection site are the most commonly reported events with COVID-19 vaccines. 
+            </p>
+             <h1 id="title">
+                 {% for  message in messages %}
+                 {{message}}
+                {% endfor %}
+            </h1>
+        </header>
+
+        {% if sbp_edit_effects %}
+            <form  method= "POST" action="{% url 'update_effects' sbp_edit_effects.id %}" id="survey-form">
+
+             {% csrf_token %}
+             <div class="report_form">
+                <label>Select dose of vaccines in the followings?</label>
+                <select  required id="dropdown"  value ="{{sbp_edit_effects.Vac_Immunity}}"  name="Vac_Immunity" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <!-- <option value="1st Dose">1st Dose</option> -->
+                    <option >1st Dose</option> 
+                    <option >2nd Dose</option>
+                    <option >First Booster</option>
+                    <option >Second Booster</option>
+                </select>
+            </div>
+
+            <div class="report_form">
+                <label>Select vaccines class in the followings?</label>
+                <select  required id="dropdown" value ="{{sbp_edit_effects.Vaccination_Category}}" name="Vaccination_Category" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option >Pfizer</option>
+                    <option >AstraZeneca</option>
+                    <option >Sinovac</option>
+                    <option >Sputnik</option>
+                    <option >Johnsons Janssen</option>
+                    <option >BioTech</option>
+                    <option >Moderna</option>
+                </select>
+            </div>
+
+            
+             <div class="report_form">
+                <label>What are the physical effects of the vaccine dose and type that you receive ?</label>
+                <select  required id="dropdown" value ="{{sbp_edit_effects.Physical_mild_Effects}}" name="Physical_mild_Effects" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option>Mild fever(Lagnat)</option>
+                    <option >Chills(Pagkalamig)</option>
+                    <option >Feeling tired(Pagod)</option>
+                    <option >Headache(Pagsakit ng ulo)</option>
+                    <option >Muscle and joint aches</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+             <div class="report_form">
+                <label> What are the Physical serious impacts of the vaccine dose and type you receive?</label>
+                <select  required id="dropdown" value ="{{sbp_edit_effects.Physical_Serious_Effects}}" name="Physical_Serious_Effects" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option >Difficulty breathing(Hirap sa Paghinga)</option>
+                    <option >Swelling of your face(Pamamaga ng Muka)</option>
+                    <option >Swelling of your throat(Pamamaga ng Lalamunan)</option>
+                    <option >A fast heartbeat(palpitate)</option>
+                    <option >A bad rash all over your body(Pamamantal)</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+            <div class="report_form">
+                <label> What are the psychological impacts of the vaccine dose and type you receive?</label>
+                <select  required id="dropdown" value ="{{sbp_edit_effects.Physical_Serious_Effects}}" name="Mental_Effects" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option >Depression</option>
+                    <option >Anxiety</option>
+                    <option >Locomotors Impairment(Pagkawalang balanse)</option>
+                    <option >Sleep Deprivation(Hirap sa Pagtulog)</option>
+                    <option >Loss of Memory and focus(Pagiging Malimutin)</option>
+                    <option >Hallucinations</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+             <div class="report_form">
+                <label>What is your prior experience with dosage and vaccination injections?</label>
+                <input type="text"  id="name" value ="{{sbp_edit_effects.Mental_Effects}}" name="Trigger_Past_Illness" class="formControl" placeholder="ex.Healthy being " required>
+            </div>
+            <!-- <div class="report_form">
+                <label>When were your immunizations administered?</label>
+                <input type="text" name="name" id="name" class="formControl" placeholder="ex.06-12-2022" required>
+            </div> -->
+             <div class="report_form">
+                <label for="name">Is it possible that the immunizations and doses you received triggered your previous illness?</label>
+                <input type="text"  id="name" value ="{{sbp_edit_effects.Trigger_Past_Illness}}" name="Experience_Effects" class="formControl" placeholder="ex.yes my skin symtoms" required>
+            </div> 
+            <div class="report_form">
+                <label for="name">Date</label>
+                <input type="text"  id="name" value ="{{sbp_edit_effects.date_created}}" name="date_created" class="formControl" placeholder="ex.06-12-2022" required>
+            </div> 
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn"> Update Submit</button>
+            </div>
+            </form>
+        
+        {% else %}
+        <form  method= "POST" action="{% url 'report_effects_surv' %}" id="survey-form">
+
+             {% csrf_token %}
+             <div class="report_form">
+                <label>Select dose of vaccinces in the followings?</label>
+                <select  required id="dropdown"  name="Vac_Immunity" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <!-- <option value="1st Dose">1st Dose</option> -->
+                    <option >1st Dose</option> 
+                    <option >2nd Dose</option>
+                    <option >First Booster</option>
+                    <option >Second Booster</option>
+                </select>
+            </div>
+
+            <div class="report_form">
+                <label>Select vaccines class in the followings?</label>
+                <select  required id="dropdown" name="Vaccination_Category" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option >Pfizer</option>
+                    <option >AstraZeneca</option>
+                    <option >Sinovac</option>
+                    <option >Sputnik</option>
+                    <option >Johnsons Janssen</option>
+                    <option >BioTech</option>
+                    <option >Moderna</option>
+                </select>
+            </div>
+
+            
+             <div class="report_form">
+                <label>What are the physical effects of the vaccine dose and type that you receive ?</label>
+                <select  required id="dropdown" name="Physical_mild_Effects" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option>Mild fever(Lagnat)</option>
+                    <option >Chills(Pagkalamig)</option>
+                    <option >Feeling tired(Pagod)</option>
+                    <option >Headache(Pagsakit ng ulo)</option>
+                    <option >Muscle and joint aches</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+             <div class="report_form">
+                <label> What are the bodily serious impacts of the vaccine dose and type you receive?</label>
+                <select  required id="dropdown"  name="Physical_Serious_Effects" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option >Difficulty breathing(Hirap sa Paghinga)</option>
+                    <option >Swelling of your face and throat(Pamamaga ng Muka)</option>
+                    <option >Swelling of your throat(Pamamaga ng Lalamunan)</option>
+                    <option >A fast heartbeat(palpitate)</option>
+                    <option >A bad rash all over your body(Pamamantal)</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+
+            <div class="report_form">
+                <label> What are the psychological impacts of the vaccine dose and type you receive?</label>
+                <select  required id="dropdown" name="Mental_Effects" class="formControl">
+                    <option value disabled selected >Select</option>
+                    <option >Depression</option>
+                    <option >Anxiety</option>
+                    <option >Locomotors Impairment(Pagkawalang balanse)</option>
+                    <option >Sleep Deprivation(Hirap sa Pagtulog)</option>
+                    <option >Loss of Memory and focus(Pagiging Malimutin)</option>
+                    <option >Hallucinations</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+             <div class="report_form">
+                <label>What is your prior experience with dosage and vaccination injections?</label>
+                <input type="text"  id="name" name="Trigger_Past_Illness" class="formControl" placeholder="ex.Healthy being " required>
+            </div>
+            <!-- <div class="report_form">
+                <label>When were your immunizations administered?</label>
+                <input type="text" name="name" id="name" class="formControl" placeholder="ex.06-12-2022" required>
+            </div> -->
+             <div class="report_form">
+                <label for="name">Is it possible that the immunizations and doses you received triggered your previous illness?</label>
+                <input type="text"  id="name" name="Experience_Effects" class="formControl" placeholder="ex.yes my skin symtoms" required>
+            </div> 
+            <div class="report_form">
+                <label for="name">Date</label>
+                <input type="text"  id="name" name="date_created" class="formControl" placeholder="ex.06-12-2022" required>
+            </div> 
+            <div class="report_form">
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</body>
+{% endblock %}
+</html>

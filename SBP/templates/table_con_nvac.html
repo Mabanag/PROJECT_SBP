@@ -1,0 +1,61 @@
+{% load static %}
+
+<head>
+{% block content %}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'table_con_nvac.css' %}">
+
+
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Concerns About Vaccines</th>
+        <th>Concerns You Did Not Decide Yet</th>
+        <th>Difficulty Of Getting Vaccinated</th>
+        <th>Other Concerns</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for notvac in concern_vaccinated %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{notvac.Concern_One}}</td>
+        <td>{{notvac.Concern_Two}}</td>
+        <td>{{notvac.Concern_Three}}n</td>
+        <td>{{notvac.Other_Concern_Reason}}</td>
+        <td><a href="{% url 'edit_concerns' notvac.id %}">Update</a></td>
+        <td><a href="{% url 'delete_concerns' notvac.id %}">Delete</a></td>
+        <!-- <td>
+          <p class="status status-unpaid">ONLINE</p>
+        </td> -->
+       <!--  <td class="amount">PHP 123</td> -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="sbp">
+    <span class="step-links">
+        {% if concern_vaccinated.has_previous %}
+            <a href="?page=1">&lAarr; First</a>
+            <a href="?page={{ concern_vaccinated.previous_page_number }}">  Previous Concern table</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ concern_vaccinated.number }} of {{ concern_vaccinated.paginator.num_pages }}.
+        </span>
+
+        {% if concern_vaccinated.has_next %}
+            <a href="?page={{ concern_vaccinated.next_page_number }}">Next</a>
+            <a href="?page={{ concern_vaccinated.paginator.num_pages }}">Last Page &rAarr;</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+{% endblock %}
